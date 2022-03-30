@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './components/About/About';
 import Countries from './components/Countries/Countries';
-import Country from './components/Country/Country';
+import CountryDetails from './components/CountryDetails/CountryDetails';
 import FriendDetail from './components/FriendDetail/FriendDetail';
 import Friends from './components/Friends/Friends';
 import Header from './components/Header/Header';
@@ -24,7 +24,7 @@ function App() {
           <Route path=':postId' element={<PostDetail></PostDetail>}></Route>
         </Route>
         <Route path='countries' element={<Countries></Countries>}></Route>
-        <Route path='country/:countryName' element={<Country></Country>}></Route>
+        <Route path='country/:countryName' element={<CountryDetails></CountryDetails>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
     </div>

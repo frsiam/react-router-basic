@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import Country from '../Country/Country';
 
 const Countries = () => {
     const [countries, setCountries] = useState([])
-    useEffect(()=>{
+    useEffect(() => {
         fetch('https://restcountries.com/v3.1/all')
-        .then(res => res.json())
-        .then(data => setCountries(data))
-    },[])
+            .then(res => res.json())
+            .then(data => setCountries(data))
+    }, [])
     return (
         <div>
-            <h1>Welcome to My world</h1>
-            <p>Total countries: {countries.length}</p>
+            <div className='border border-emerald-400 mx-40 my-5 rounded-md py-3 bg-fuchsia-300 text-2xl font-sans font-semibold'>
+                <h1>Welcome to My world</h1>
+                <p>Total countries: {countries.length}</p>
+            </div>
             {
-                countries.map(country =><li className='hover:text-black my-2 text-xl text-blue-600 font-medium'><Link key={country.ccn3} to={`/country/${country.name.common}`} element={<Country></Country>}>{country.name.common}</Link></li> )
+                countries.map(country => <Country key={country.ccn3} country={country}></Country>)
             }
         </div>
     );

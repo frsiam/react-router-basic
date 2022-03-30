@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Country = () => {
-    const {countryName} = useParams()
-    const [country, setCountry] = useState([])
-    useEffect(()=>{
-        const url = `https://restcountries.com/v3.1/name/${countryName}`
-        console.log(url)
-        fetch(url)
-        .then(res => res.json())
-        .then(data => setCountry(data))
-    },[countryName])
-    console.log(country)
+const Country = (props) => {
+    console.log(props.country)
+    const {name,flags,population,area,ccn3} = props.country
+    // console.log(name.common)
+    let navigate = useNavigate()
+    const showCountryDetail = () => {
+        const path = `/country/${name.common}`
+        navigate(path)
+    }
     return (
         <div>
-            <h1 className='text-4xl mt-8 text-fuchsia-600 font-serif font-semibold'>Welcome to {countryName}</h1>
-            <img src={country[0].flags.png} alt="" />
+            <h1 className='text-2xl my-3 font-semibold'>Name: <span className='text-3xl text-orange-500 hover:text-blue-500'>{name?.common}</span></h1>
+            <Link to={`/country/${name.common}`}>Details</Link>
+            <button onClick={showCountryDetail} className='bg-cyan-400 px-3 py-2 rounded-lg font-semibold'>Show Details {ccn3}</button>
         </div>
     );
 };
